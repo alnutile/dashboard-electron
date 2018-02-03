@@ -1,56 +1,50 @@
 <template>
 <div class="container is-fluid">
-  <div class="notification">
+  <div class="notification" v-if="notifications.length > 0">
     This container is <strong>fluid</strong>: it will have a 32px gap on either side, on any
     viewport size.
   </div>
-  <settings></settings>
 
   <div class="tile is-ancestor">
-      <div class="tile is-parent">
-    <article class="tile is-child box">
-      <div class="content">
-        <p class="title">Tall tile</p>
-        <div class="content">
-At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
-        </div>
-      </div>
-    </article>
+
+      <weather></weather>
+      <builds></builds>
+      <quotes></quotes>
+
   </div>
-      <div class="tile is-parent">
-    <article class="tile is-child box">
-      <div class="content">
-        <p class="title">Tall tile</p>
-        <div class="content">
-At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
-        </div>
-      </div>
-    </article>
-  </div>
-        <div class="tile is-parent">
-    <article class="tile is-child box">
-      <div class="content">
-        <p class="title">Tall tile</p>
-        <div class="content">
-          At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat.
-        </div>
-      </div>
-    </article>
-  </div>
+  <button class="button is-info" v-on:click="settingsSwitch()">
+      <i class="fa fa-gear"></i>
+  </button>
+  <hr>
+  <div class="level">
+    <settings v-if="settings"></settings>
   </div>
 </div>
 </template>
 
 <script>
-import SystemInformation from "./LandingPage/SystemInformation";
+import SystemInformation from './LandingPage/SystemInformation';
+import Settings from './Settings';
+import Weather from './Weather';
+import Builds from './Builds';
+import Quotes from './Quotes';
 
 export default {
-  name: "landing-page",
-  components: { SystemInformation },
+  name: 'landing-page',
+  components: { SystemInformation, Settings, Quotes, Builds, Weather },
+  created: function() {
+    this.$store.dispatch('loadSettings');
+  },
+  data() {
+    return {
+      settings: false,
+      notifications: []
+    };
+  },
   methods: {
+    settingsSwitch() {
+      this.settings = this.settings ? false : true;
+    },
     open(link) {
       this.$electron.shell.openExternal(link);
     }
@@ -59,7 +53,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 * {
   box-sizing: border-box;
@@ -68,7 +62,7 @@ export default {
 }
 
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 #wrapper {
