@@ -27,17 +27,17 @@
 </template>
 
 <script>
-import SystemInformation from "./LandingPage/SystemInformation";
-import Settings from "./Settings";
-import Weather from "./Weather";
-import Builds from "./Builds";
-import Quotes from "./Quotes";
+import SystemInformation from './LandingPage/SystemInformation';
+import Settings from './Settings';
+import Weather from './Weather';
+import Builds from './Builds';
+import Quotes from './Quotes';
 
 export default {
-  name: "landing-page",
+  name: 'landing-page',
   components: { SystemInformation, Settings, Quotes, Builds, Weather },
   created: function() {
-    this.$store.dispatch("loadSettings");
+    this.$store.dispatch('loadSettings');
   },
   data() {
     return {
@@ -57,7 +57,7 @@ export default {
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro");
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
 
 * {
   box-sizing: border-box;
@@ -66,12 +66,13 @@ export default {
 }
 
 body {
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   padding-top: 50px;
 }
 
 #dash {
   min-height: 700px;
+  color: #6c757d;
 }
 
 #wrapper {
