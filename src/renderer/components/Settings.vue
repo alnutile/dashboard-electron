@@ -2,21 +2,16 @@
     <div class="container">
       <div class="content">
            <form v-on:submit.prevent="submit">
-        <div class="field">
-            <label class="label">Token</label>
-            <p>
+                         <p>
                 You can get your token by logging into the teamdashboard site and clicking
-                ...
             </p>
-            <div class="control">
-                <input class="input" type="text" placeholder="token"
-                v-model="token">
-            </div>
+        <div class="form-group">
+            <label class="label">Token</label>
+            <input class="form-control" type="text" placeholder="token"
+            v-model="token">
         </div>
-        <div class="field">
-            <div class="control">
-                <button class="button is-link">Save</button>
-            </div>
+        <div class="form-group">
+                <button class="btn btn-default">Save</button>
         </div>
       </form>
         </div>
@@ -26,11 +21,11 @@
 </template>
 
 <script>
-import store from './../store';
-import SetingsModel from './../models/Settings';
+import store from "./../store";
+import SetingsModel from "./../models/Settings";
 
 export default {
-  name: 'settings',
+  name: "settings",
   data() {
     return {
       token: null

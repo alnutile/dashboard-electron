@@ -1,41 +1,41 @@
 <template>
-      <div class="tile is-parent">
-        <article class="tile is-child box">
-          <div class="content">
-            <p class="title">QUOTES</p>
-            <div class="content">
-              <div class="card" v-if="!quote.getQuote">
-                <div class="card-content">
-                  <p class="title">
-                    No Quote loaded yet
-                  </p>
-                  <p class="subtitle">
+<div class="col-4">
+  <b-card title="QUOTES"
+          tag="article"
+          bg-variant="secondary"
+          text-variant="white"
+          v-if="!quote.quote">
+    <p class="card-text">
+      No Quote loaded yet
+      <p class="subtitle">
                     By Me
                   </p>
-                </div>
-              </div>
+  </b-card>
 
-              <div class="card" v-if="quote.getQuote">
-                <div class="card-content">
-                  <p class="title">
-                    {{ quote.getQuote.quote }}
+    <b-card title="QUOTES"
+          tag="article"
+          bg-variant="secondary"
+          text-variant="white"
+          v-if="quote.quote">
+    <p class="card-text">
+      {{ quote.quote }}
+      <p class="subtitle">
+                    {{ quote.by }} <i>(posted by: {{ quote.posted_by.name }})</i>
                   </p>
-                  <p class="subtitle">
-                    {{ quote.getQuote.by }} <i>(posted by: {{ quote.getQuote.posted_by.name }})</i>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </article>
-    </div>
+  </b-card>
+</div>
 </template>
 
 <script>
 export default {
-  name: 'quotes',
+  name: "quotes",
+  mounted: function() {
+    console.log("quotes component getting quote");
+    this.$store.dispatch("getQuotes");
+  },
   computed: {
     quote: function() {
+      console.log("quotes component computed quote");
       console.log(this.$store.state.quote);
       return this.$store.state.quote;
     }
@@ -44,12 +44,5 @@ export default {
 </script>
 
 <style>
-.card {
-  background-color: inherit;
-}
-.subtitle {
-  color: #c5c5c5;
-}
+
 </style>
-
-
