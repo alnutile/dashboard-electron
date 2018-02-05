@@ -32,8 +32,15 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    loadHourlyTimers({ state, dispatch }) {
+      setTimeout(() => {
+        dispatch("getQuotes");
+        dispatch("loadHourlyTimers");
+      }, 3000);
+    },
     loadSettings({ commit, dispatch }) {
       SettingsModel.getToken();
+      dispatch("loadHourlyTimers");
     },
     getQuotes({ state, commit }) {
       if (state.token) {
