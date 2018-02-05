@@ -1,5 +1,7 @@
 <template>
-<div class="col-4 quotes">
+<div class="card rounded border-dark blocks"
+    style="width: 80rem;">
+    <div class="card-block">
   <h1 class="text-uppercase">Quotes</h1>
       <blockquote class="blockquote"
           v-if="!quote.quote">
@@ -16,19 +18,20 @@
         {{ quote.by }} <cite title="Source Title">(posted by: {{ quote.posted_by.name }})</cite>
       </footer>
       </blockquote>
+  </div>
 </div>
 </template>
 
 <script>
 export default {
-  name: 'quotes',
+  name: "quotes",
   mounted: function() {
-    console.log('quotes component getting quote');
-    this.$store.dispatch('getQuotes');
+    console.log("quotes component getting quote");
+    this.$store.dispatch("getQuotes");
   },
   computed: {
     quote: function() {
-      console.log('quotes component computed quote');
+      console.log("quotes component computed quote");
       console.log(this.$store.state.quote);
       return this.$store.state.quote;
     }
@@ -43,6 +46,7 @@ export default {
 
 .blockquote-footer {
   font-size: 80%;
+  color: #b2b3be;
 }
 
 .blockquote-footer .cite {

@@ -1,13 +1,9 @@
 <template>
-<div class="col-4">
-    <b-card title="Builds"
-          tag="article"
-          bg-variant="secondary"
-          text-variant="white">
-    <p class="card-text">
-      No Builds yet
-    </p>
-  </b-card>
+<div class="card rounded border-dark blocks">
+    <div class="card-block">
+      <h1 class="text-uppercase">Travis</h1>
+      <p>Coming Soon...</p>
+    </div>
 </div>
 </template>
 
